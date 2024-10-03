@@ -114,7 +114,7 @@ public class messageHandler {
         System.out.println("-----------------------------------\n");
     }
 
-    public static void addList(messageList list, String input){
+    public static void addList(messageList list, String input) throws IOException {
         if(input.contains("todo")) {
             List<Message> messages = list.getMessages();
             Message message = new Message(input);
