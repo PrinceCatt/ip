@@ -1,10 +1,10 @@
-import Entity.Message;
-import Entity.messageList;
-import Utils.messageHandler;
-import Utils.saveHandler;
+import Entity.TaskList;
+import Storage.InitFile;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import static Command.PreHandle.preHandle;
 
 public class Yukino {
 
@@ -18,18 +18,10 @@ public class Yukino {
         System.out.println("Hello, I am Yukino!\n");
         System.out.println("What can I do for you?\n");
         System.out.println("-----------------------------------\n");
-
-
-        messageList list = new messageList();
-
-
-        saveHandler.initFile(list);
+        TaskList list = new TaskList();
+        InitFile.initFile(list);
         Scanner scanner = new Scanner(System.in);
         String input = null;
-
-        messageHandler messageHandler = new messageHandler();
-        messageHandler.preHandle(list);
+        preHandle(list);
     }
 }
-
-//level 5 increment here
