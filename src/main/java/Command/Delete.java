@@ -21,24 +21,24 @@ public class Delete {
      * @throws IOException If an error occurs.
      */
 
-    public static void delete(TaskList list, String input) throws IOException {
-        String[] sentences = input.split(" ");
-        List<Task> tasks = list.getTaskList();
-        int i = 0;
-        for(i = 0; i < list.getTaskListSize(); i++) {
-            if(tasks.get(i).getDescription().equals(sentences[1])) {
-                list.removeTask(tasks.get(i));
-                break;
+    public static void delete(TaskList list, String input) throws ArrayIndexOutOfBoundsException {
+        try {
+            String[] sentences = input.split(" ");
+            List<Task> tasks = list.getTaskList();
+            int i = Integer.parseInt(sentences[1]);
+            if(tasks.size() == 0 || i > tasks.size() || i < 1) {
+                System.out.println("Sorry, you are deleting an invalid task event");
             }
+            else {
+                tasks.remove(i - 1);
+                System.out.println("------------------------------------\n");
+                System.out.println("You have successfully deleted this task");
+                System.out.println("------------------------------------\n");
+            }
+            writeToFile(list);
+        } catch (ArrayIndexOutOfBoundsException | IOException e) {
+            System.out.println("Please enter a valid input");
         }
-        if(tasks.size() == 0 || i > tasks.size() - 1) {
-            System.out.println("Sorry, you are deleting an event that has not been added");
-        }
-        else {
-            System.out.println("------------------------------------\n");
-            System.out.println("You have successfully deleted this task");
-            System.out.println("------------------------------------\n");
-        }
-        writeToFile(list);
+
     }
 }

@@ -18,7 +18,8 @@ public class PreHandle {
         String input = null;
         while(true) {
             input = scanner.nextLine();
-            if (input.equals("bye")) {
+            String command = input.split(" ")[0];
+            if (command.equals("bye")) {
                 System.out.println("-----------------------------------\n");
                 System.out.println("Bye! Hope to see you soon!\n");
                 System.out.println("-----------------------------------\n");
@@ -27,19 +28,19 @@ public class PreHandle {
             else if (input.equals("list")) {
                 listShow(list);
             }
-            else if (input.contains("mark") || input.contains("unmark")) {
+            else if (command.equals("mark") || command.equals("unmark")) {
                 mark(list, input);
             }
-            else if (input.contains("delete")) {
+            else if (command.equals("delete")) {
                 delete(list, input);
             }
-            else if (input.contains("add")) {
+            else if (command.equals("add")) {
                 addList(list, input);
             }
-            else if (input.contains("find")) {
+            else if (command.equals("find")) {
                 find(list, input);
             }
-            else if (input.contains("exit")) {
+            else if (command.equals("exit")) {
                 System.out.println("Bye! Hope to see you soon!\n");
                 exit(0);
             }

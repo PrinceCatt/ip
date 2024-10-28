@@ -1,7 +1,9 @@
 package Utils;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Converter {
 
@@ -12,9 +14,15 @@ public class Converter {
      * @param input The input of time to be converted.
      */
 
-    public static LocalDateTime convertToDate(String input) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH-dd-MM-yyyy");
-        return LocalDateTime.parse(input, formatter);
+    public static LocalDateTime convertToDate(String input) throws DateTimeParseException {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH-dd-MM-yyyy");
+            return LocalDateTime.parse(input, formatter);
+        }
+        catch (DateTimeParseException e) {
+            System.out.println("Sorry, you entered a date with a wrong format");
+        }
+        return null;
     }
 
 
